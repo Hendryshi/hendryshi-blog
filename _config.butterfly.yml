@@ -100,7 +100,7 @@ favicon: /img/avatar.jpg
 
 # Avatar (头像)
 avatar:
-  img: /img/avatar.jpg
+  img: https://img.hendryshi.com/i/2023/03/641f67844bf1f.webp
   effect: false
 
 # Disable all banner image
@@ -140,10 +140,16 @@ cover:
   archives_enable: true
   # the position of cover in home page (封面顯示的位置)
   # left/right/both
-  position: left
+  position: right
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+     - https://img.hendryshi.com/i/2023/03/6420802133ef0.webp
+     - https://img.hendryshi.com/i/2023/03/6420801e29be9.webp
+     - https://img.hendryshi.com/i/2023/03/6420801cb3509.webp
+     - https://img.hendryshi.com/i/2023/03/64208015b4976.webp
+     - https://img.hendryshi.com/i/2023/03/6420800f8169d.webp
+     - https://img.hendryshi.com/i/2023/03/6420800633c2b.webp
+
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -158,13 +164,13 @@ error_404:
 
 post_meta:
   page: # Home Page
-    date_type: updated # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
+    date_type: both # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
     date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 主頁是否顯示分類
     tags: false # true or false 主頁是否顯示標籤
     label: true # true or false 顯示描述性文字
   post:
-    date_type: updated # created or updated or both 文章頁日期是創建日或者更新日或都顯示
+    date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
     date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
@@ -173,7 +179,7 @@ post_meta:
 # wordcount (字數統計)
 # see https://butterfly.js.org/posts/ceeb73f/#字數統計
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
