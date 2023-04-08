@@ -1,57 +1,27 @@
 ---
 title: 'Write My First Game: MineSweeper'
-toc: true
-thumbnail: /2020/05/01/Write-My-First-Game-MineSweeper/cover.png
+cover: https://img.hendryshi.com/i/2023/04/6431bb7ddc525.webp
 tags:
   - C#
   - WinForm
 categories:
-  - .NET
+  - Project
 abbrlink: ac55a180
 date: 2020-05-01 00:00:00
-update: 2020-05-02 00:00:00
 ---
 
 This is my first game developed by C# WinForm platform. The initial object is to practice my C# level. So the first game jump into my mind is "MineSweeper". It is enough simple and interesting. In this post I will list my conception and some difficult point during my development.
-
 
 **To see my [MineSweeper project](https://github.com/Hendryshi/MineSweeper) in github.**
 
 **See also [the rule for mineSweeper](http://www.freeminesweeper.org/help/minehelpinstructions.html)**
 
-
 <!-- more -->
 
 # Class Conception
 
-<!-- classDiagram
-class Game{
-    +Square[ , ] squares
-    +gameLevel
-    +isStart
-    +OpenSingleSq()
-    +OpenAroundSq()
-    +CheckWinLose()
-}
-class Square{
-    +status
-    +value
-    +position
-    +GetAroundSquare()
-    +AddRemoveFlag()
-}
-class Frame{
-    +Bitmap bufferMainFrame
-	+private Bitmap bufferInfoFrame
-	+private Bitmap bufferMineFrame
-    +DrawMainFrame()
-    +DrawMineFrame()
-}
-Game *-- Square
-Game *-- Frame -->
 
-
-![](class.png)
+![class](https://img.hendryshi.com/i/2023/04/6431bb706b0bd.webp)
 
 In this application three main objects are used in models:
 - Class `Game` presents one game, every time when we create or restart a new game, this class is created. Trough this class we have the proprieties like `gameResults`, `flagCounts` and `gameLevel`.
@@ -63,36 +33,7 @@ In this application three main objects are used in models:
 
 # Program process
 
-  <!-- graph LR
-  A(MouseDown)
-  B{Left, Right or Both}
-  C(MouseClick)
-  D[Add flag]
-  E(Open single square)
-  F{Hit Mine or Win}
-  G([Lose])
-  H(MouseUp)
-  I(Open around square)
-  J([Win])
-  style E fill: #FFF333
-  style I fill: #FFF333
-  style B fill: #9999FF
-  style F fill: #9999FF -->
-
-[comment]: # (
-A --> B
-B -->|Left| C
-B -->|Right| H
-H --> I --> F
-C --> E --> F
-E -->|Expand if value = 0| E
-I -->|Expand if value = 0| I
-F -->|Hit Mine| G
-F -->|Continue| A
-F -->|Win| J
-B -->|Right| D --> A)
-
-![](process.png)
+![process](https://img.hendryshi.com/i/2023/04/6431bb9827d21.webp)
 
 As described as above, every time when we click the mouse, the program enter into different functions defined in object `Game` according to the different mouse event (left click, right click or both click). And at the end of every function, we call the function drawing in `Frame` to refresh our frontend interface.
 
@@ -123,7 +64,7 @@ Note that in my program, I don't know it's which click are mouse down or up, I u
     ```
 
 - **MouseDown event**: This function is called when your mouse is clicked down
-    
+  
     I use this function to add flag if it's the right click, also if left click, I will set the property `leftDown` to be true and use it in mouseUp function later.
 
     ```csharp
@@ -144,17 +85,17 @@ Note that in my program, I don't know it's which click are mouse down or up, I u
                         game.AddRemoveFlag(e.Location);
                     break;
             }
-
+    
             if(leftDown && rightDown && game.InGameSize(e.Location))
                 game.SetSquaresDown(e.Location, true);
-
+    
             RefreshFrame();
         }
     }
     ```
 
 - **MouseClick event**: This function is called after function MouseDown
-    
+  
     This function is the most common mouse event, I use it to open a single square if it's left click.
 
     ```Csharp
@@ -167,14 +108,14 @@ Note that in my program, I don't know it's which click are mouse down or up, I u
                 game.StartGame(e.Location);
                 threadTimer.Change(0, 1000);
             }
-
+    
             game.OpenSingleSquare(e.Location);
             RefreshFrame();
         }
     }
     ```
 - **MouseUp event**: This function is called the moment when your mouse is click up (the position of click up). 
-    
+  
     I use this function to open around squares if it's both click (leftDown && rightDown)
 
     ```Csharp
@@ -184,7 +125,7 @@ Note that in my program, I don't know it's which click are mouse down or up, I u
         {
             if(leftDown && rightDown && game.InGameSize(e.Location))
                 game.OpenAroundSquares(e.Location);
-
+    
             switch(e.Button)
             {
                 case MouseButtons.Left:
@@ -194,7 +135,7 @@ Note that in my program, I don't know it's which click are mouse down or up, I u
                     rightDown = false;
                     break;
             }
-
+    
             game.SetAllSquaresUp();
             game.ChangeFace(GameFace.SmileUp);
             RefreshFrame();
@@ -208,7 +149,7 @@ As this is my first winForm application, I know few about the [**windows GDI+ te
 
 - **Create the frame**:
 
-    ![](frame.png)
+    ![frame](https://img.hendryshi.com/i/2023/04/6431bbae9c7a2.webp)
 
     When the game is started, the first thing we do is to create the entire frame, To realize that, I created three empty bitmap as temporary buffer image (one for info panel, one for mine panel, and one for main panel) in the frame object. They all have the same size as the frontend frame
 
@@ -217,7 +158,7 @@ As this is my first winForm application, I know few about the [**windows GDI+ te
     bufferInfoFrame = new Bitmap(rctPnlInfo.Width, rctPnlInfo.Height);
     bufferTimerFrame = new Bitmap(rctPnlTimer.Width, rctPnlTimer.Height);
     bufferMineFrame = new Bitmap(rctPnlMine.Width, rctPnlMine.Height);
-
+    
     Graphics.FromImage(bufferMainFrame).Clear(GRAY);
     Graphics.FromImage(bufferInfoFrame).Clear(GRAY);
     Graphics.FromImage(bufferTimerFrame).Clear(GRAY);
@@ -228,7 +169,7 @@ As this is my first winForm application, I know few about the [**windows GDI+ te
 
 
 - **Draw the squares**:
-    
+  
     In the game, you need to open squares with different value. According to the different value of square, you need to draw different image on the specified position of the temporary image.
 
     ```csharp Function Draw Square
@@ -238,17 +179,16 @@ As this is my first winForm application, I know few about the [**windows GDI+ te
         int srcY = (int)square.Status + (square.Status == MineStatus.OpenedNumber ? (Square.MaxSquareNum - square.Value) * ImgMineUnitWidth : 0);
         Rectangle mineRect = new Rectangle(square.Location, new Size(squareSize, squareSize));
         Rectangle srcRect = new Rectangle(new Point(0, srcY), new Size(ImgMineUnitWidth, ImgMineUnitWidth));
-
+    
         GraphicsUnit units = GraphicsUnit.Pixel;
         g.DrawImage(imgMine, mineRect, srcRect, units);
-
+    
         return bufferMineFrame;
     }
     ```
     >Function [**Graphic.DrawImage**](https://docs.microsoft.com/en-us/dotnet/api/system.drawing.graphics.drawimage?view=dotnet-plat-ext-3.1) can draw a specified image on the target frame. 
     >`imgMine` is your image that you choose to put on the target frame, `srcRect` is the part of your image (imgMine).
     
-
 - **Refresh the square on the board**:
     As some of you may ask why you have to draw on the temporary bitmap and cover it to the frontend interface ? why we cannot draw the image directly on the frontend board ?
     
@@ -432,11 +372,9 @@ private void ChangeTime(object value)
     this.MaximizeBox = false;
 ```
 
-{% raw %}<article class="message is-info"><div class="message-body">{% endraw %}
-**Note**: 
-
-This code should be put in Form.Designer.cs
-{% raw %}</div></article>{% endraw %}
+{% note warning modern no-icon %}
+**This code should be put in Form.Designer.cs**
+{% endnote %}
 
 ## Save my score when breaking records
 To save my scores, I use the property of userSetting. The differences between userSetting and appSetting is that appSetting cannot be modified in the program, but with userSetting you can change it or load it in your program.
@@ -473,4 +411,4 @@ private void SetNewRecords()
 
 
 # Conclusion
-This is my first game developed by C# winForm. At first I think that it's easy to develop, but in fact I still met some difficulties and it took me about two weeks to finish it. Maybe in the future I would add some another features like music and animation effect to my application.
+This is my first personal game developed by C# winForm. At first I think that it's easy to develop, but in fact I still met some difficulties and it took me about two weeks to finish it. Maybe in the future I would add some another features like music and animation effect to my application.

@@ -1,14 +1,12 @@
 ---
 title: Some tips when using GROUP BY in SQL Server
-toc: true
-thumbnail: /2020/05/12/SQL-Server-Study-GROUPBY/cover.png
+cover: https://img.hendryshi.com/i/2023/04/6431b69f23c17.webp
 tags:
-  - SQL Server
-categories:
   - SQL
+categories:
+  - Tech
 abbrlink: 3ee492a7
 date: 2020-05-12 22:05:07
-update: 2020-05-12 22:05:07
 ---
 
 ## Using ROLLUP
@@ -28,7 +26,7 @@ See example below:
 
 Results:
 
-![](RollUpResult.png)
+![RollUpResult](https://img.hendryshi.com/i/2023/04/6431b6dc5b98a.webp)
 
 If you group by two different criterion, the result will give you the subtotal according to your criterion's order. See example below:
 
@@ -42,15 +40,13 @@ If you group by two different criterion, the result will give you the subtotal a
 
 Results:
 
-![](RollUpResult2.png)
+![RollUpResult2](https://img.hendryshi.com/i/2023/04/6431b6ea11d1a.webp)
 
 In this example, the query assumes that there is a hierarchy between brand & category, which is the brand > category.
 
-{% raw %}<article class="message is-info"><div class="message-body">{% endraw %}
-**Note**: 
-
+{% note warning modern no-icon %}
 If you change the order of brand and category, the result will be different
-{% raw %}</div></article>{% endraw %}
+{% endnote %}
 
 See the following query:
 
@@ -62,7 +58,7 @@ See the following query:
 
 Results:
 
-![](RollUpResult3.png)
+![RollUpResult3](https://img.hendryshi.com/i/2023/04/6431b6f8737a3.webp)
 
 ## Using Grouping SETS (分组集)
 
@@ -85,8 +81,6 @@ When you use `GROUP BY ROLLUP(brand, category)`, it defines a grouping sets ((br
     -- GROUP BY GROUPING SETS ((brand, category), (brand), ()) 
 ```
 
-{% raw %}<article class="message is-success"><div class="message-body">{% endraw %}
-**conclusion**: 
-
-we can say that the `GROUP BY ROLLUP` is a special grouping sets.
-{% raw %}</div></article>{% endraw %}
+{% note success modern no-icon %}
+**We can say that the `GROUP BY ROLLUP` is a special grouping sets.**
+{% endnote %}

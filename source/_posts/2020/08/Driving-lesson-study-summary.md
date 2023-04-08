@@ -1,15 +1,13 @@
 ---
 title: Driving Lesson Study Summary
-toc: true
-thumbnail: /2020/08/22/Driving-lesson-study-summary/drivingTitle.jpg
+cover: https://img.hendryshi.com/i/2023/04/6431bd987b45d.webp
 tags:
   - Driving
-  - Life
+  - Chinese
 categories:
-  - Personal
+  - Life
 abbrlink: e9c4005c
 date: 2020-08-22 19:43:17
-update: 2020-08-22 19:43:17
 ---
 
 This blog records of all my summary of driving lesson in France. Continue updating...
@@ -39,7 +37,7 @@ This blog records of all my summary of driving lesson in France. Continue updati
 -   在城郊线开车时，需要时刻观察后面摩托车的动向，给他们让路
 -   起步加速时油门要稳定加速，不要猛踩
 -   在靠路边停车时，提早把离合踩到底滑行
--   在下坡路时，如果只是想缓缓下去，只要轻松刹车就可以，如果是想在下坡路起步，轻松刹车，在车子有一定速度的时候抬离合
+-   xxxxxxxxxx     String cookieString="cookieName=cookieValue; Secure; SameSite=None"    response.setHeader("Set-Cookie", cookieString);Java
 
 ## **Lesson 5 - 09/15/2020 - 看后视镜**
 -   在减速，转弯，和变道前，先打灯，再看后视镜，然后在转弯前看后视镜和死角，死角就迅速看一眼，然后开始转弯（变道），在看后视镜的时候不要转方向盘。要随时注意右边的自行车道

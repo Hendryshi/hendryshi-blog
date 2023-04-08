@@ -1,6 +1,6 @@
 ---
 title: Hexo Tutorial
-cover: 
+cover: https://img.hendryshi.com/i/2023/04/6431b5ec67e6e.webp
 categories:
   - Tech
 tags:
@@ -13,11 +13,13 @@ date: 2020-04-04 00:00:00
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
 
+
+
 ## Workflow
 
 ### Create a new post
 
-``` javascript
+``` bash
 $ hexo new "post title"
 ```
 That will create a markdown file named by your title, and an image folder which has the same name in sub directory `source\_posts\`
@@ -25,7 +27,6 @@ That will create a markdown file named by your title, and an image folder which 
 ### Write blog
 
 Put your categories and tags in your markdown file.
-To insert the cover image in your blog, change the image path to `/yyyy/mm/dd/post-title/cover.png` after `permalink`
 Write the article after `< !-- more -- >`. 
 To insert the image in your blog, put the image file in the image folder
 

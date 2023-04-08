@@ -1,25 +1,22 @@
 ---
 title: Chrome new cookie attribute SameSite
-toc: true
-thumbnail: /2020/08/15/Chrome-new-cookie-attribute-SameSite/SameSite title.jpg
+cover: https://img.hendryshi.com/i/2023/04/6431bd0d685d5.webp
 tags:
   - JavaEE
   - Apache
   - Chrome
 categories:
-  - JAVA
+  - Tech
 abbrlink: '41234836'
 date: 2020-08-15 19:42:08
-update: 2020-08-15 19:42:08
 ---
-
 
 About chrome's new version 80: Cookie attribute "SameSite = none"
 
 ## **Context**
 Recently we met a strange problem in our program: when users finished payment in site A and went back to site B, the cookie of site B was lost. While the site B use a anti-CSRF that always linked to a cookie. the user found an error message in the page said that "Cannot validate CSRF because your session is lost".
 
-![](/2020/08/15/Chrome-new-cookie-attribute-SameSite/cookie-error.png)
+![cookie-error](https://img.hendryshi.com/i/2023/04/6431bd1e81340.webp)
 
 After investigating this problem, we found that the chrome introduced a new cookie attribute "SameSite = None" after their upgrade of version 80 that will block the cookie if it's a cross-site request.
 
@@ -32,7 +29,7 @@ Cookies is a small piece of data that a server sends to the user's web browser. 
 
 The first time browser post a request to the server, the server will return a response with a special cookie. Then the browser will use this cookie in every request if it posts to the same server. 
 
-![](cookie.png)
+![cookie](https://img.hendryshi.com/i/2023/04/6431bd25523ce.webp)
 
 ### *Cookie attribute*
 Cookies can be secured by properly setting cookie attributes. These attributes are:
@@ -42,30 +39,29 @@ Cookies can be secured by properly setting cookie attributes. These attributes a
 - **HTTPOnly**: True/False
 - **Expires**:
 - **SameSite**: Strict/Lax/None
-    
+  
 ### New Attribute SameSite = None
 SameSite values can be set to :
     - **Strict**: cookie is sent only within the same site
     - **Lax**: sent within the same site and in Get request from other sites
     - **None**: sent in a secure context (HTTPS)  to clearly indicate that the cookie is sent in a third–party context.
 
-![](sameSite.png)
+![sameSite](https://img.hendryshi.com/i/2023/04/6431bd2f911c7.webp)
 
 Before the upgrade of chrome if the attribute of the cookies was not specified it implicitly stated that the cookie was sent in all contexts. The update of Chrome has made explicit this behavior in introducing a new value SameSite=None. As a result cookies without an explicitly SameSite attribute are treated as `SameSite = Lax` and if they are from third party in POST they are rejected by the browser.
 
-![](crossSite.png)
+![crossSite](https://img.hendryshi.com/i/2023/04/6431bd3738232.webp)
 
-{% raw %}<article class="message is-info"><div class="message-body">{% endraw %}
-**Note**: 
+{% note info modern no-icon %}
 You must ensure that you pair SameSite=None with the Secure attribute together.
-{% raw %}</div></article>{% endraw %}
+{% endnote %}
 
 ## **Solution**
 
 ### *Set directly in Chrome*
 If you tap `chrome://flags` and search keyword `SameSite`. Then you can disable this sameSite default setting and it will solve the problem.
 
-![](solution1.jpg)
+![solution1](https://img.hendryshi.com/i/2023/04/6431bd6da2e40.webp)
 
 ### *Configuration in the Apache Server*
 
