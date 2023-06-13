@@ -545,7 +545,11 @@ tag_ui: # 留空或 index
 background: "#f7f9fe"
 
 # Footer Background
-footer_bg: 
+footer_bg: "#434748"
+
+# Add mask to header or footer (为 header 或 footer 添加黑色半透遮罩)
+mask:
+  footer: true
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
@@ -902,7 +906,7 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-     - <link rel="stylesheet" href="/css/custom.css">
+     - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
   bottom:
     # - <script src="xxxx"></script>
 
